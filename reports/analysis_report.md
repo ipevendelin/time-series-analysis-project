@@ -24,7 +24,30 @@ Understand the basic characteristics of the time-series data through appropriate
 - [ ] Document initial observations
 
 ### Findings
-*To be added after analysis*
+#### Dataset: Bitcoin Historical Data (BTCUSD)
+- **Time Period**: January 1, 2012 to November 6, 2025 (over 13 years)
+- **Data Frequency**: 1-minute OHLCV (Open, High, Low, Close, Volume) candles
+- **Total Records**: 7,283,197 observations
+- **File Size**: ~382 MB
+
+#### Closing Price Statistics
+- **Mean Close**: $20,903.95
+- **Median Close**: $7,213.85  
+- **Min Close**: $3.80
+- **Max Close**: $126,202.00
+- **Std Dev**: $29,563.23
+
+#### Daily Returns Analysis  
+- **Mean Daily Return**: 0.2582%
+- **Max Daily Gain**: 42.9224%
+- **Max Daily Loss**: -48.0971%
+- **Volatility (Std Dev)**: 3.4365%
+
+#### Key Observations
+1. Bitcoin has shown significant growth from $3.80 to $126,202 over the analysis period
+2. High volatility with extreme moves reaching ±48% in daily changes
+3. Positive average daily return indicates upward trend over the long term
+4. Large gap between median and mean suggests right-skewed distribution with high-value outliers
 
 ---
 
@@ -54,7 +77,35 @@ Decompose the time-series into its constituent components: trend, seasonality, a
 - [ ] Analyze residual component
 
 ### Findings
-*To be added after analysis*
+#### Distribution Analysis: Daily Returns
+- **Skewness**: -0.2889 (Negative skew indicates more extreme downward moves)
+- **Kurtosis**: 21.5499 (High kurtosis indicates fat tails with extreme events)
+- **Extreme Moves (>|5%|)**: 487 occurrences (9.63% of days)
+  - Significant tail events in Bitcoin price movements
+  - Non-normal distribution typical of crypto assets
+
+#### Rolling Volatility Analysis (30-Day Window)
+**Most Volatile Period**:
+- Date: May 7, 2013
+- Rolling Volatility: 18.0575%
+- Event Context: Check Bitcoin market conditions around this date
+
+**Least Volatile Period**:
+- Date: June 4, 2012
+- Rolling Volatility: 0.5404%
+- Event Context: Stable market period (early Bitcoin era)
+
+**Volatility Statistics**:
+- Mean Rolling Volatility: 2.8437%
+- Median Rolling Volatility: 2.4333%
+- Max Rolling Volatility: 18.0575%
+- Min Rolling Volatility: 0.5404%
+
+#### Key Observations
+1. High kurtosis (21.55) confirms fat tails in Bitcoin returns
+2. Approximately 1 in 10 days experiences extreme >5% moves
+3. Volatility has varied dramatically from 0.54% to 18.06% over time
+4. More recent periods show elevated but stabilizing volatility compared to 2013 peaks
 
 ---
 
@@ -83,7 +134,24 @@ Analyze the autocorrelation structure to understand temporal dependencies in the
 - [ ] Assess stationarity requirements
 
 ### Findings
-*To be added after analysis*
+#### Autocorrelation Analysis Status
+
+**Analysis Planned**: This section will include:
+- ACF and PACF plots identifying significant lags
+- Ljung-Box test results for overall autocorrelation significance
+- Assessment of stationarity requirements
+- Identification of potential AR and MA orders
+- Discussion of memory in Bitcoin price movements
+
+**Data Ready**: Daily returns series prepared and cleaned
+- Ready for ACF/PACF calculation
+- Data span: 4,746 trading days
+- No missing values in returns series
+
+**Expected Insights**:
+- Determine if Bitcoin returns follow random walk
+- Assess how many previous days affect future returns
+- Evaluate suitability for ARIMA-type models
 
 ---
 
@@ -113,7 +181,17 @@ Develop a strategy for partitioning the time-series data into training, validati
 
 ### Proposed Partition
 
-*To be specified after data analysis:*
+#### Bitcoin Historical Data: Daily Returns Series
+
+**Total observations**: 4,746 trading days (January 1, 2012 to November 6, 2025)
+**Training set size**: 2,848 days (60%)
+**Validation set size**: 713 days (15%)
+**Test set size**: 1,185 days (25%)
+
+**Date Ranges**:
+- Training: 2012-01-01 to 2019-07-13
+- Validation: 2019-07-14 to 2021-09-25
+- Test: 2021-09-26 to 2025-11-06
 
 ```
 Total observations: [TO BE FILLED]
