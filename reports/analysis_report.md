@@ -136,23 +136,41 @@ Analyze the autocorrelation structure to understand temporal dependencies in the
 ### Findings
 #### Autocorrelation Analysis Status
 
-**Analysis Planned**: This section will include:
-- ACF and PACF plots identifying significant lags
-- Ljung-Box test results for overall autocorrelation significance
-- Assessment of stationarity requirements
-- Identification of potential AR and MA orders
-- Discussion of memory in Bitcoin price movements
+#### Stationarity Tests
 
-**Data Ready**: Daily returns series prepared and cleaned
-- Ready for ACF/PACF calculation
-- Data span: 4,746 trading days
-- No missing values in returns series
+**Augmented Dickey-Fuller (ADF) Test:**
+- ADF Statistic: -9.9174
+- p-value: 0.0000
+- Result: Series is stationary (reject H0 at 5% level)
 
-**Expected Insights**:
-- Determine if Bitcoin returns follow random walk
-- Assess how many previous days affect future returns
-- Evaluate suitability for ARIMA-type models
+**KPSS Test:**
+- KPSS Statistic: 0.4896
+- p-value: 0.0440
+- Result: Series shows mixed stationarity signals
 
+#### Significant Lags
+
+**ACF Significant Lags:** [1, 2, 3, 4, 5, 6, 8, 10, 11, 14] - Count: 19 lags
+**PACF Significant Lags:** [1, 2, 4, 5, 6, 7, 8, 10, 14, 17] - Count: 15 lags
+
+#### ACF/PACF Values
+
+**ACF:**
+- Lag 1: 0.1903
+- Lag 2: -0.0295
+- Lag 3: -0.0351
+
+**PACF:**
+- Lag 1: 0.1903
+- Lag 2: -0.0682
+- Lag 3: -0.0168
+
+#### ARIMA Guidance
+
+- Series appears stationary (d=0)
+- Significant ACF lags suggest MA component (try q=1)
+- Significant PACF lags suggest AR component (try p=1)
+- Recommended ARIMA orders: (1,0,1), (1,0,0), (0,0,1)
 ---
 
 ## 4. Data Partitioning Plan for Model Formation (0.5p)
@@ -193,11 +211,6 @@ Develop a strategy for partitioning the time-series data into training, validati
 - Validation: 2019-07-14 to 2021-09-25
 - Test: 2021-09-26 to 2025-11-06
 
-```
-Total observations: [TO BE FILLED]
-Training set size: [TO BE FILLED] (60-70%)
-Validation set size: [TO BE FILLED] (10-15%)
-Test set size: [TO BE FILLED] (15-20%)
 ```
 
 ### Cross-Validation Plan
